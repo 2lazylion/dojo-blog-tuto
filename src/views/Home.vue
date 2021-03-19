@@ -13,6 +13,7 @@
       Loading...
     </div>
     
+    <br>
     <button @click="showPosts = !showPosts">toggle posts</button>
     <button @click="posts.pop()">delete a post</button>
     <!-- <h2>Refs</h2>
@@ -41,37 +42,22 @@
 
 <script>
 import PostList from '../components/PostList.vue'
+import getPosts from '../composables/getPosts'
 import { ref, reactive, computed, watch, watchEffect } from 'vue'
+
 export default {
   name: 'Home',
   components: { PostList },
   setup() {
+    const {posts, error, load} = getPosts()
 
-    // fetching data
-    const posts = ref([])
-    const error = ref(null)
-
-    const load = async () => {
-      try {
-        let data = await fetch('http://localhost:3000/posts')
-        
-        if(!data.ok) {
-          throw Error('no data available')
-        }
-
-        posts.value = await data.json()
-      } 
-      catch(err) {
-        error.value = err.message
-        console.log(error.value)
-      }
-    }
     load()
+    
     const showPosts = ref(true)
 
     
     return { 
-      posts, showPosts
+      posts, showPosts, error
     }
 
 
