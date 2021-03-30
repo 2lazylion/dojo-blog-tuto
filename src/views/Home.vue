@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="contenu">
     <h1>Home</h1>
 
     <!-- fetching data -->

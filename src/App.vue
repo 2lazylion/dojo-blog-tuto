@@ -23,5 +23,9 @@ export default ({
   color: #2c3e50;
 }
 
-
+.contenu {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+}
 </style>

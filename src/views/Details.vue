@@ -1,5 +1,6 @@
 <template>
-  <h1> details </h1>
+<div class="contenu">
+    <h1> details </h1>
 
   <!-- Si erreur -->
   <div v-if="error">
@@ -16,6 +17,8 @@
   <div v-else>
       <Spinner />
   </div>
+</div>
+  
 </template>
 
 <script>
