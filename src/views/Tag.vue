@@ -1,20 +1,24 @@
 <template>
   <div class="contenu">
-      <h1>#{{ tag  }}</h1>
+      <!-- titre de la page-->
+      <h1>#{{ tag }}</h1>
+
       <!-- if error, show it -->
       <div v-if="error">
           <p> {{ error }} </p>
       </div>
 
       <!-- is filteredPost contient quelque chose afffiche la liste des postes -->
-      <div v-if="filteredPosts.length">
+      <div v-if="filteredPosts.length" class="layout">
           <PostList :posts="filteredPosts"/>
+          <TagCloud :posts="posts" />
       </div>
 
       <!-- sinon, affiche le spinner-->
       <div v-else>
         <Spinner />
       </div>
+      
   </div>
 </template>
 
@@ -24,11 +28,12 @@ import { computed } from '@vue/runtime-core'
 import { useRoute } from 'vue-router'
 import PostList from '../components/PostList.vue'
 import Spinner from '../components/Spinner.vue'
+import TagCloud from '../components/TagCloud.vue'
 import getPosts from '../composables/getPosts' 
 
 export default {
     // la liste des components utilisees
-    components: { PostList, Spinner },
+    components: { PostList, Spinner, TagCloud },
     setup() {
         // obtient le route
         const route = useRoute()
@@ -51,7 +56,7 @@ export default {
         })
 
         // retourne ce qui sera utiliser dans le template
-        return { tag, filteredPosts, error }
+        return { tag, filteredPosts, error, posts }
     }
 }
 </script>

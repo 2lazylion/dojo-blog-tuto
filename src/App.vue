@@ -1,6 +1,7 @@
 <template>
   <Navbar />
-  <router-view/>
+  <!-- :key="$route.fullPath" va remount a chaque fois qu'un composant est remount. Pratique pour le view Tag -->
+  <router-view :key="$route.fullPath"/>
 </template>
 
 <script>
@@ -27,5 +28,11 @@ export default ({
   max-width: 1200px;
   margin: 0 auto;
   padding: 10px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
 }
 </style>

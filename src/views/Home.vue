@@ -6,8 +6,9 @@
     <div v-if="error">
       {{ error }}
     </div>
-    <div v-if="posts.length">
+    <div v-if="posts.length" class="layout">
       <PostList v-if="showPosts" :posts="posts" />
+      <TagCloud :posts="posts" />
     </div>
     <div v-else>
       <Spinner />
@@ -44,11 +45,12 @@
 import PostList from '../components/PostList.vue'
 import getPosts from '../composables/getPosts'
 import Spinner from '../components/Spinner.vue'
+import TagCloud from '../components/TagCloud.vue'
 import { ref, reactive, computed, watch, watchEffect } from 'vue'
 
 export default {
   name: 'Home',
-  components: { PostList, Spinner },
+  components: { PostList, Spinner, TagCloud },
   setup() {
     const {posts, error, load} = getPosts()
 
@@ -121,4 +123,5 @@ export default {
   margin: 0 auto;
   padding: 10px;
 }
+
 </style>
