@@ -1,4 +1,5 @@
 import { ref } from "@vue/reactivity"
+import { projectFirestore } from "../firebase/config"
 
 const postPost = () => {
     // va contenir une erreur s'il y en a une et la retourner
@@ -7,18 +8,19 @@ const postPost = () => {
     // fonction qui sera appeler. elle prend en entree
     // un 'post' et il va le charger dans la db
     const upload = async (post) => {
-        console.log('upload called')
-        console.log(post)
+        /* console.log('upload called')
+        console.log(post) */
         
-        await fetch('http://localhost:3000/posts',{
+        /* await fetch('http://localhost:3000/posts',{
             method:'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify(post)
         }).catch(err => {
             error.value = err.message
             console.log(error.value)
-        })
+        }) */
         
+        const res = await projectFirestore.collection('posts').add(post)
     }
 
     return{ upload, error }

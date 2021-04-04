@@ -16,6 +16,7 @@
 <script>
 import { ref } from '@vue/reactivity'
 import { useRouter } from 'vue-router'
+import { timestamp } from '../firebase/config'
 import postPost from '../composables/postPost'
 
 export default {
@@ -34,7 +35,9 @@ export default {
             const post = {
                 title: title.value, 
                 body: body.value,
-                tags: tags.value}
+                tags: tags.value,
+                createdAt: timestamp()
+                }
             
             upload(post)
 
